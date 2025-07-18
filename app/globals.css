@@ -53,11 +53,12 @@ body {
   ry: 8;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: border-loop 1s linear forwards;
+  transition: stroke-dashoffset 0s;
 }
 
 .industry-card:hover .border-anim rect {
-  /* No dash after animation: ensure full white border */
-  animation: border-loop 1s linear forwards;
-  animation-fill-mode: forwards;
+  animation: border-loop 2s linear forwards;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  /* After animation, keep border solid */
 }
