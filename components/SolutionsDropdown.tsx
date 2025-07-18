@@ -154,9 +154,24 @@ export default function SolutionsDropdown({ isOpen }: SolutionsDropdownProps) {
 							{contentData[activeTab]?.map((line, idx) => (
 								<div
 									key={idx}
-									className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition">
+									className="industry-card relative flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition"
+								>
 									<div className="w-8 h-8 bg-white/20 rounded" />
 									<span className="text-white/90 text-base">{line}</span>
+									<svg
+										className="border-anim absolute top-0 left-0 w-full h-full"
+										xmlns="http://www.w3.org/2000/svg"
+										preserveAspectRatio="none"
+									>
+										<rect
+											x="1"
+											y="1"
+											width="calc(100% - 2px)"
+											height="calc(100% - 2px)"
+											rx="8"
+											ry="8"
+										/>
+									</svg>
 								</div>
 							))}
 						</div>
