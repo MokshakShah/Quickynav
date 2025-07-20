@@ -1,3 +1,4 @@
+// components/ServicesDropdown.tsx
 'use client';
 import {
 	ChevronDown,
@@ -139,15 +140,15 @@ export default function ServicesDropdown({ isOpen }: ServicesDropdownProps) {
 			</button>
 
 			<div
-				className={`fixed right-0 top-full w-full h-[460px]  backdrop-blur-xl text-white flex z-50 px-10 gap-6 shadow-lg transition-all duration-300 ease-in-out
+				className={`fixed right-0 top-full w-full h-[460px]  backdrop-blur-xl text-white flex z-50 px-10 gap-6  transition-all 
 					${
 						isOpen
-							? 'opacity-100 translate-y-0 pointer-events-auto'
-							: 'opacity-0 -translate-y-4 pointer-events-none'
+							? 'block'
+							: 'hidden'
 					}
 				`}>
 				{/* Sidebar */}
-				<div className="w-72 border-r border-white/10 pr-6 py-6">
+				<div className="w-80 border-r border-white/10 pr-6 py-6">
 					<ul className="flex flex-col gap-3">
 						{sidebarItems.map((item) => {
 							const Icon = iconMap[item];

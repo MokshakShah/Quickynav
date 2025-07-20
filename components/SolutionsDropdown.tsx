@@ -1,3 +1,4 @@
+// components/SolutionsDropdown.tsx
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -14,10 +15,10 @@ import {
 
 type SidebarItem =
 	| 'Digital Transformation'
-	| 'Customer Experience & Commerce'
 	| 'AI & ML Solutions'
 	| 'Generative AI'
-	| 'SAP Solutions';
+	| 'SAP Solutions'
+	| 'Customer Experience & Commerce';
 
 interface SolutionsDropdownProps {
 	isOpen?: boolean;
@@ -25,10 +26,10 @@ interface SolutionsDropdownProps {
 
 const sidebarItems: SidebarItem[] = [
 	'Digital Transformation',
-	'Customer Experience & Commerce',
 	'AI & ML Solutions',
 	'Generative AI',
 	'SAP Solutions',
+	'Customer Experience & Commerce',
 ];
 
 const iconMap: Record<SidebarItem, LucideIcon> = {
@@ -48,12 +49,7 @@ const contentData: Record<SidebarItem, string[]> = {
 		'Advanced Data Science Platforms',
 		'Enterprise IT Architecture Planning',
 	],
-	'Customer Experience & Commerce': [
-		'Adobe Commerce Cloud Solutions',
-		'Omnichannel eCommerce Platforms',
-		'Custom Mobile Commerce Applications',
-		'AI-Enhanced Customer Journeys',
-	],
+
 	'AI & ML Solutions': [
 		'AI Strategy & Roadmapping',
 		'Conversational AI Platforms',
@@ -75,6 +71,13 @@ const contentData: Record<SidebarItem, string[]> = {
 		'SAP IBP (Integrated Business Planning)',
 		'SAP Technical Optimization',
 	],
+		'Customer Experience & Commerce': [
+		'Adobe Commerce Cloud Solutions',
+		'Omnichannel eCommerce Platforms',
+		'Custom Mobile Commerce Applications',
+		'AI-Enhanced Customer Journeys',
+	],
+	
 };
 
 export default function SolutionsDropdown({ isOpen }: SolutionsDropdownProps) {
@@ -97,26 +100,23 @@ export default function SolutionsDropdown({ isOpen }: SolutionsDropdownProps) {
 		<div
 			className="relative"
 			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}>
+			onMouseLeave={handleMouseLeave}
+		>
 			<button
 				ref={buttonRef}
-				className="flex items-center gap-1 text-xl text-gray-300 hover:bg-white/20 px-4 py-2 rounded-full transition z-50">
+				className="flex items-center gap-1 text-xl text-gray-300 hover:bg-white/20 px-4 py-2 rounded-full z-50"
+			>
 				Solutions <ChevronDown size={16} />
 			</button>
 
 			{typeof window !== 'undefined' && (
 				<div
 					style={{ top: dropdownTop }}
-					className={`fixed left-0 w-full max-h-[90vh] overflow-y-auto
-						 backdrop-blur-xl text-white flex z-50 px-10 gap-6 shadow-lg 
-						transition-all duration-300 ease-in-out pt-10
-						${
-							open
-								? 'opacity-100 translate-y-0 pointer-events-auto'
-								: 'opacity-0 -translate-y-4 pointer-events-none'
-						}`}>
+					className={`fixed left-0 w-full max-h-[90vh] overflow-y-auto backdrop-blur-xl text-white flex z-50 px-10 gap-6 pt-10
+						${open ? 'block' : 'hidden'}`}
+				>
 					{/* Sidebar */}
-					<div className="w-72 border-r border-white/10 pr-6">
+					<div className="w-80 border-r border-white/10 pr-6">
 						<ul className="flex flex-col gap-3">
 							{sidebarItems.map((item) => {
 								const Icon = iconMap[item];
@@ -124,11 +124,12 @@ export default function SolutionsDropdown({ isOpen }: SolutionsDropdownProps) {
 									<li
 										key={item}
 										onMouseEnter={() => setActiveTab(item)}
-										className={`cursor-pointer px-4 py-2 rounded-md transition text-lg flex items-center justify-between group ${
+										className={`cursor-pointer px-4 py-2 rounded-md text-lg flex items-center justify-between group ${
 											activeTab === item
 												? 'bg-white/20 font-semibold'
 												: 'hover:bg-white/10'
-										}`}>
+										}`}
+									>
 										<div className="flex items-center gap-3">
 											<Icon size={18} />
 											{item}
@@ -136,7 +137,7 @@ export default function SolutionsDropdown({ isOpen }: SolutionsDropdownProps) {
 										{activeTab === item && (
 											<ChevronRight
 												size={18}
-												className="text-white opacity-80 transition-opacity group-hover:opacity-100"
+												className="text-white opacity-80 group-hover:opacity-100"
 											/>
 										)}
 									</li>
@@ -154,7 +155,7 @@ export default function SolutionsDropdown({ isOpen }: SolutionsDropdownProps) {
 							{contentData[activeTab]?.map((line, idx) => (
 								<div
 									key={idx}
-									className="industry-card relative flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition"
+									className="industry-card relative flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer"
 								>
 									<div className="w-8 h-8 bg-white/20 rounded" />
 									<span className="text-white/90 text-base">{line}</span>

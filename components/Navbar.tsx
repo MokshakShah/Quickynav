@@ -5,6 +5,8 @@ import { Menu, X } from 'lucide-react';
 import SolutionsDropdown from './SolutionsDropdown';
 import ServicesDropdown from './ServicesDropdown';
 import IndustriesDropdown from './IndustriesDropdown';
+import ResponsibilitiesDropdown from './ResponsibilitiesDropdown';
+import AboutDropdown from './AboutDropdown';
 
 interface NavbarProps {
 	onMegaMenuToggle?: (isOpen: boolean) => void;
@@ -40,7 +42,7 @@ export default function Navbar({ onMegaMenuToggle }: NavbarProps) {
 
 	return (
 		<nav className="relative z-50 w-full px-14 py-4 flex justify-between items-center backdrop-blur-md text-sm">
-			<div className="text-2xl font-semibold text-white">Google AI</div>
+			<div className="text-2xl font-semibold text-white">QuickyTech</div>
 
 			{/* Desktop Dropdowns */}
 			<div className="hidden md:flex gap-2 items-center text-white text-sm relative">
@@ -67,6 +69,22 @@ export default function Navbar({ onMegaMenuToggle }: NavbarProps) {
 					onMouseLeave={handleMouseLeave}>
 					<IndustriesDropdown isOpen={activeDropdown === 'industries'} />
 				</div>
+
+				{/* Responsibilities */}
+				<div
+					className="relative"
+					onMouseEnter={() => handleMouseEnter('responsibilities')}
+					onMouseLeave={handleMouseLeave}>
+					<ResponsibilitiesDropdown isOpen={activeDropdown === 'responsibilities'} />
+				</div>
+
+				{/* About */}
+				<div
+					className="relative"
+					onMouseEnter={() => handleMouseEnter('about')}
+					onMouseLeave={handleMouseLeave}>
+					<AboutDropdown isOpen={activeDropdown === 'about'} />
+				</div>
 			</div>
 
 			{/* Desktop Buttons */}
@@ -92,6 +110,8 @@ export default function Navbar({ onMegaMenuToggle }: NavbarProps) {
 					<ServicesDropdown isOpen />
 					<SolutionsDropdown isOpen />
 					<IndustriesDropdown isOpen />
+					<ResponsibilitiesDropdown isOpen />
+					<AboutDropdown isOpen />
 					<button className="w-full py-2 bg-white/20 rounded-full hover:bg-white/30 transition duration-200">
 						Try Google AI Studio
 					</button>

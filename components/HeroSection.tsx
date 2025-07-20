@@ -1,3 +1,4 @@
+// components/HeroSection.tsx
 'use client';
 
 import { ArrowRight, ArrowLeft } from 'lucide-react';
